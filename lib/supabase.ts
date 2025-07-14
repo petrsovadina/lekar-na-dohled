@@ -81,14 +81,14 @@ export async function getCurrentUser() {
   const supabase = createBrowserClient()
   
   try {
-    const { data: { user }, error } = await supabase.auth.getUser()
+    const { data: { session }, error } = await supabase.auth.getSession()
     
     if (error) {
-      console.error('Chyba při získávání uživatele:', error.message)
+      console.error('Chyba při získávání session:', error.message)
       return null
     }
     
-    return user
+    return session?.user || null
   } catch (error) {
     console.error('Neočekávaná chyba při získávání uživatele:', error)
     return null
@@ -104,7 +104,7 @@ export async function getCurrentSession() {
   try {
     const { data: { session }, error } = await supabase.auth.getSession()
     
-    if (error) {
+    if (error && error.message !== 'Auth session missing!') {
       console.error('Chyba při získávání session:', error.message)
       return null
     }
@@ -129,15 +129,15 @@ export async function isAuthenticated(): Promise<boolean> {
  */
 export async function isDoctor(): Promise<boolean> {
   const supabase = createBrowserClient()
-  const user = await getCurrentUser()
+  const session = await getCurrentSession()
   
-  if (!user) return false
+  if (!session?.user) return false
   
   try {
     const { data, error } = await supabase
       .from('doctors')
       .select('id')
-      .eq('user_id', user.id)
+      .eq('user_id', session.user.id)
       .eq('is_verified', true)
       .single()
     
@@ -153,15 +153,15 @@ export async function isDoctor(): Promise<boolean> {
  */
 export async function isPatient(): Promise<boolean> {
   const supabase = createBrowserClient()
-  const user = await getCurrentUser()
+  const session = await getCurrentSession()
   
-  if (!user) return false
+  if (!session?.user) return false
   
   try {
     const { data, error } = await supabase
       .from('patients')
       .select('id')
-      .eq('user_id', user.id)
+      .eq('user_id', session.user.id)
       .eq('gdpr_consent', true)
       .single()
     
@@ -177,15 +177,15 @@ export async function isPatient(): Promise<boolean> {
  */
 export async function getDoctorProfile() {
   const supabase = createBrowserClient()
-  const user = await getCurrentUser()
+  const session = await getCurrentSession()
   
-  if (!user) return null
+  if (!session?.user) return null
   
   try {
     const { data, error } = await supabase
       .from('doctors')
       .select('*')
-      .eq('user_id', user.id)
+      .eq('user_id', session.user.id)
       .single()
     
     if (error) {
@@ -205,15 +205,15 @@ export async function getDoctorProfile() {
  */
 export async function getPatientProfile() {
   const supabase = createBrowserClient()
-  const user = await getCurrentUser()
+  const session = await getCurrentSession()
   
-  if (!user) return null
+  if (!session?.user) return null
   
   try {
     const { data, error } = await supabase
       .from('patients')
       .select('*')
-      .eq('user_id', user.id)
+      .eq('user_id', session.user.id)
       .single()
     
     if (error) {
@@ -237,15 +237,15 @@ export async function getPatientProfile() {
  */
 export async function hasGDPRConsent(consentType: string): Promise<boolean> {
   const supabase = createBrowserClient()
-  const user = await getCurrentUser()
+  const session = await getCurrentSession()
   
-  if (!user) return false
+  if (!session?.user) return false
   
   try {
     const { data, error } = await supabase
       .from('gdpr_consents')
       .select('consented')
-      .eq('user_id', user.id)
+      .eq('user_id', session.user.id)
       .eq('consent_type', consentType)
       .eq('consented', true)
       .is('withdrawal_date', null)
@@ -267,9 +267,9 @@ export async function recordGDPRConsent(
   metadata?: Record<string, any>
 ): Promise<boolean> {
   const supabase = createBrowserClient()
-  const user = await getCurrentUser()
+  const session = await getCurrentSession()
   
-  if (!user) {
+  if (!session?.user) {
     throw new Error('Uživatel není přihlášen')
   }
   
@@ -277,7 +277,7 @@ export async function recordGDPRConsent(
     const { error } = await supabase
       .from('gdpr_consents')
       .insert({
-        user_id: user.id,
+        user_id: session.user.id,
         consent_type: consentType,
         consented,
         consent_date: new Date().toISOString(),
@@ -302,9 +302,9 @@ export async function recordGDPRConsent(
  */
 export async function revokeGDPRConsent(consentType: string): Promise<boolean> {
   const supabase = createBrowserClient()
-  const user = await getCurrentUser()
+  const session = await getCurrentSession()
   
-  if (!user) {
+  if (!session?.user) {
     throw new Error('Uživatel není přihlášen')
   }
   
@@ -314,7 +314,7 @@ export async function revokeGDPRConsent(consentType: string): Promise<boolean> {
       .update({ 
         withdrawal_date: new Date().toISOString() 
       })
-      .eq('user_id', user.id)
+      .eq('user_id', session.user.id)
       .eq('consent_type', consentType)
       .eq('consented', true)
       .is('withdrawal_date', null)
@@ -335,9 +335,10 @@ export async function revokeGDPRConsent(consentType: string): Promise<boolean> {
  */
 export async function getGDPRConsentHistory(userId?: string): Promise<any[]> {
   const supabase = createBrowserClient()
-  const user = userId ? { id: userId } : await getCurrentUser()
+  const session = await getCurrentSession()
+  const targetUserId = userId || session?.user?.id
   
-  if (!user) {
+  if (!targetUserId) {
     throw new Error('Uživatel není přihlášen')
   }
   
@@ -345,7 +346,7 @@ export async function getGDPRConsentHistory(userId?: string): Promise<any[]> {
     const { data, error } = await supabase
       .from('gdpr_consents')
       .select('*')
-      .eq('user_id', user.id)
+      .eq('user_id', targetUserId)
       .order('created_at', { ascending: false })
     
     if (error) {

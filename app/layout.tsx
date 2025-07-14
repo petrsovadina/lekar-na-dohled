@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
+import { AuthProvider } from '@/components/auth/AuthProvider'
 
 const inter = Inter({ 
   subsets: ['latin', 'latin-ext'], // Support for Czech diacritics
@@ -103,67 +104,69 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </head>
       <body className={`${inter.className} min-h-screen bg-background font-sans antialiased`}>
-        {/* GDPR Banner will be added here */}
-        <div id="gdpr-banner-root"></div>
-        
-        {/* Main application container */}
-        <div className="relative flex min-h-screen flex-col">
-          {/* Header with navigation */}
-          <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-            <div className="container flex h-14 items-center">
-              <div className="mr-4 hidden md:flex">
-                <a className="mr-6 flex items-center space-x-2" href="/">
-                  <span className="hidden font-bold sm:inline-block">DoktorNaDohled</span>
-                </a>
-                <nav className="flex items-center space-x-6 text-sm font-medium">
-                  <a href="/vyhledavani" className="transition-colors hover:text-foreground/80">
-                    Vyhledávání lékařů
+        <AuthProvider>
+          {/* GDPR Banner will be added here */}
+          <div id="gdpr-banner-root"></div>
+          
+          {/* Main application container */}
+          <div className="relative flex min-h-screen flex-col">
+            {/* Header with navigation */}
+            <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+              <div className="container flex h-14 items-center">
+                <div className="mr-4 hidden md:flex">
+                  <a className="mr-6 flex items-center space-x-2" href="/">
+                    <span className="hidden font-bold sm:inline-block">DoktorNaDohled</span>
                   </a>
-                  <a href="/rezervace" className="transition-colors hover:text-foreground/80">
-                    Rezervace
-                  </a>
-                  <a href="/telemedicina" className="transition-colors hover:text-foreground/80">
-                    Telemedicína
-                  </a>
-                </nav>
-              </div>
-              <div className="flex flex-1 items-center justify-between space-x-2 md:justify-end">
-                <div className="w-full flex-1 md:w-auto md:flex-none">
-                  {/* User authentication will be added here */}
+                  <nav className="flex items-center space-x-6 text-sm font-medium">
+                    <a href="/vyhledavani" className="transition-colors hover:text-foreground/80">
+                      Vyhledávání lékařů
+                    </a>
+                    <a href="/rezervace" className="transition-colors hover:text-foreground/80">
+                      Rezervace
+                    </a>
+                    <a href="/telemedicina" className="transition-colors hover:text-foreground/80">
+                      Telemedicína
+                    </a>
+                  </nav>
+                </div>
+                <div className="flex flex-1 items-center justify-between space-x-2 md:justify-end">
+                  <div className="w-full flex-1 md:w-auto md:flex-none">
+                    {/* User authentication will be added here */}
+                  </div>
                 </div>
               </div>
-            </div>
-          </header>
-          
-          {/* Main content area */}
-          <main className="flex-1">
-            {children}
-          </main>
-          
-          {/* Footer with legal information */}
-          <footer className="border-t py-6 md:py-0">
-            <div className="container flex flex-col items-center justify-between gap-4 md:h-24 md:flex-row">
-              <div className="flex flex-col items-center gap-4 px-8 md:flex-row md:gap-2 md:px-0">
-                <p className="text-center text-sm leading-loose text-muted-foreground md:text-left">
-                  © 2024 DoktorNaDohled. Všechna práva vyhrazena.
-                  <br />
-                  Platforma pro vyhledávání zdravotnických služeb v České republice.
-                </p>
+            </header>
+            
+            {/* Main content area */}
+            <main className="flex-1">
+              {children}
+            </main>
+            
+            {/* Footer with legal information */}
+            <footer className="border-t py-6 md:py-0">
+              <div className="container flex flex-col items-center justify-between gap-4 md:h-24 md:flex-row">
+                <div className="flex flex-col items-center gap-4 px-8 md:flex-row md:gap-2 md:px-0">
+                  <p className="text-center text-sm leading-loose text-muted-foreground md:text-left">
+                    © 2024 DoktorNaDohled. Všechna práva vyhrazena.
+                    <br />
+                    Platforma pro vyhledávání zdravotnických služeb v České republice.
+                  </p>
+                </div>
+                <div className="flex items-center space-x-4 text-sm text-muted-foreground">
+                  <a href="/ochrana-osobnich-udaju" className="hover:text-foreground">
+                    Ochrana osobních údajů
+                  </a>
+                  <a href="/podminky-uziti" className="hover:text-foreground">
+                    Podmínky užití
+                  </a>
+                  <a href="/kontakt" className="hover:text-foreground">
+                    Kontakt
+                  </a>
+                </div>
               </div>
-              <div className="flex items-center space-x-4 text-sm text-muted-foreground">
-                <a href="/ochrana-osobnich-udaju" className="hover:text-foreground">
-                  Ochrana osobních údajů
-                </a>
-                <a href="/podminky-uziti" className="hover:text-foreground">
-                  Podmínky užití
-                </a>
-                <a href="/kontakt" className="hover:text-foreground">
-                  Kontakt
-                </a>
-              </div>
-            </div>
-          </footer>
-        </div>
+            </footer>
+          </div>
+        </AuthProvider>
         
         {/* Toast container for notifications */}
         <div id="toast-root"></div>

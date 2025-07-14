@@ -358,16 +358,21 @@ export function createAuditLog(
   action: AuditLogEntry['action'],
   dataType: string,
   description: string,
+  userId?: string,
+  ipAddress?: string,
+  userAgent?: string,
+  legalBasis?: string,
   metadata?: Record<string, any>
 ): AuditLogEntry {
   return {
     id: generateId(),
+    userId,
     action,
     dataType,
     timestamp: new Date(),
-    ipAddress: '0.0.0.0', // V reálné aplikaci by se získalo z requestu
-    userAgent: typeof navigator !== 'undefined' ? navigator.userAgent : 'server',
-    legalBasis: 'consent',
+    ipAddress: ipAddress || '0.0.0.0',
+    userAgent: userAgent || (typeof navigator !== 'undefined' ? navigator.userAgent : 'server'),
+    legalBasis: legalBasis || 'consent',
     description,
     metadata
   }

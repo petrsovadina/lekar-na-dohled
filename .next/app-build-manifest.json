@@ -1,102 +1,30 @@
 {
   "pages": {
-    "/_not-found/page": [
-      "static/chunks/webpack-de307c27037ef087.js",
-      "static/chunks/4bd1b696-340e2aedb6b115fd.js",
-      "static/chunks/684-8b87fd375745ce06.js",
-      "static/chunks/main-app-993691a177bf6655.js",
-      "static/chunks/app/_not-found/page-2a00a56304d86873.js"
-    ],
-    "/api/appointments/route": [
-      "static/chunks/webpack-de307c27037ef087.js",
-      "static/chunks/4bd1b696-340e2aedb6b115fd.js",
-      "static/chunks/684-8b87fd375745ce06.js",
-      "static/chunks/main-app-993691a177bf6655.js",
-      "static/chunks/app/api/appointments/route-2ec3cf5a876f618c.js"
-    ],
-    "/api/chat/route": [
-      "static/chunks/webpack-de307c27037ef087.js",
-      "static/chunks/4bd1b696-340e2aedb6b115fd.js",
-      "static/chunks/684-8b87fd375745ce06.js",
-      "static/chunks/main-app-993691a177bf6655.js",
-      "static/chunks/app/api/chat/route-af4b5b7abf184eb5.js"
-    ],
-    "/api/doctors/route": [
-      "static/chunks/webpack-de307c27037ef087.js",
-      "static/chunks/4bd1b696-340e2aedb6b115fd.js",
-      "static/chunks/684-8b87fd375745ce06.js",
-      "static/chunks/main-app-993691a177bf6655.js",
-      "static/chunks/app/api/doctors/route-740802de3499e20b.js"
-    ],
-    "/api/sitemap/route": [
-      "static/chunks/webpack-de307c27037ef087.js",
-      "static/chunks/4bd1b696-340e2aedb6b115fd.js",
-      "static/chunks/684-8b87fd375745ce06.js",
-      "static/chunks/main-app-993691a177bf6655.js",
-      "static/chunks/app/api/sitemap/route-244853d5e1b41ffe.js"
-    ],
-    "/api/robots/route": [
-      "static/chunks/webpack-de307c27037ef087.js",
-      "static/chunks/4bd1b696-340e2aedb6b115fd.js",
-      "static/chunks/684-8b87fd375745ce06.js",
-      "static/chunks/main-app-993691a177bf6655.js",
-      "static/chunks/app/api/robots/route-c242533cc1c969d5.js"
-    ],
-    "/api/gdpr/route": [
-      "static/chunks/webpack-de307c27037ef087.js",
-      "static/chunks/4bd1b696-340e2aedb6b115fd.js",
-      "static/chunks/684-8b87fd375745ce06.js",
-      "static/chunks/main-app-993691a177bf6655.js",
-      "static/chunks/app/api/gdpr/route-c81cc0419c3aa259.js"
-    ],
-    "/api/health/route": [
-      "static/chunks/webpack-de307c27037ef087.js",
-      "static/chunks/4bd1b696-340e2aedb6b115fd.js",
-      "static/chunks/684-8b87fd375745ce06.js",
-      "static/chunks/main-app-993691a177bf6655.js",
-      "static/chunks/app/api/health/route-c338b2bd0b49b1e2.js"
-    ],
     "/layout": [
-      "static/chunks/webpack-de307c27037ef087.js",
-      "static/chunks/4bd1b696-340e2aedb6b115fd.js",
-      "static/chunks/684-8b87fd375745ce06.js",
-      "static/chunks/main-app-993691a177bf6655.js",
-      "static/css/6a73af299fcd89cd.css",
-      "static/chunks/app/layout-730265e7238eb3b7.js"
-    ],
-    "/rezervace/page": [
-      "static/chunks/webpack-de307c27037ef087.js",
-      "static/chunks/4bd1b696-340e2aedb6b115fd.js",
-      "static/chunks/684-8b87fd375745ce06.js",
-      "static/chunks/main-app-993691a177bf6655.js",
-      "static/chunks/46-2c86cf2c4bfee226.js",
-      "static/chunks/475-dd82f07efffcb40d.js",
-      "static/chunks/89-65fe6d00ad8eabbb.js",
-      "static/chunks/app/rezervace/page-e18c483988486f1d.js"
-    ],
-    "/vyhledavani/page": [
-      "static/chunks/webpack-de307c27037ef087.js",
-      "static/chunks/4bd1b696-340e2aedb6b115fd.js",
-      "static/chunks/684-8b87fd375745ce06.js",
-      "static/chunks/main-app-993691a177bf6655.js",
-      "static/chunks/46-2c86cf2c4bfee226.js",
-      "static/chunks/558-b648927094a60844.js",
-      "static/chunks/89-65fe6d00ad8eabbb.js",
-      "static/chunks/app/vyhledavani/page-acfdba95f5dc9334.js"
-    ],
-    "/chat/page": [
-      "static/chunks/webpack-de307c27037ef087.js",
-      "static/chunks/4bd1b696-340e2aedb6b115fd.js",
-      "static/chunks/684-8b87fd375745ce06.js",
-      "static/chunks/main-app-993691a177bf6655.js",
-      "static/chunks/app/chat/page-7992f250bb836cbc.js"
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/layout.css",
+      "static/chunks/app/layout.js"
     ],
     "/page": [
-      "static/chunks/webpack-de307c27037ef087.js",
-      "static/chunks/4bd1b696-340e2aedb6b115fd.js",
-      "static/chunks/684-8b87fd375745ce06.js",
-      "static/chunks/main-app-993691a177bf6655.js",
-      "static/chunks/app/page-8c88f5048e6cec9b.js"
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/page.js"
+    ],
+    "/chat/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/chat/page.js"
+    ],
+    "/vyhledavani/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/vyhledavani/page.js"
+    ],
+    "/rezervace/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/rezervace/page.js"
     ]
   }
 }
