@@ -224,7 +224,7 @@ export async function POST(request: NextRequest) {
       'create',
       'appointment',
       `Vytvořen termín pro pacienta ${userId} k lékaři ${doctorId}`,
-      userId
+      { userId, doctorId, appointmentId: appointment.id }
     )
     
     await supabase.from('audit_logs').insert([auditLog])
@@ -323,7 +323,7 @@ export async function PUT(request: NextRequest) {
       'update',
       'appointment',
       `Aktualizován termín ${appointmentId}`,
-      appointment.patient_id
+      { appointmentId, patientId: appointment.patient_id }
     )
     
     await supabase.from('audit_logs').insert([auditLog])
@@ -407,7 +407,7 @@ export async function DELETE(request: NextRequest) {
       'delete',
       'appointment',
       `Zrušen termín ${appointmentId}: ${reason}`,
-      appointment.patient_id
+      { appointmentId, patientId: appointment.patient_id, reason }
     )
     
     await supabase.from('audit_logs').insert([auditLog])
@@ -451,7 +451,7 @@ async function validateAppointmentData(data: any) {
 
   // Kontrola českých svátků
   const dateStr = appointmentDate.toISOString().split('T')[0]
-  if (CZECH_HOLIDAYS_2024_2025.includes(dateStr)) {
+  if (dateStr && CZECH_HOLIDAYS_2024_2025.includes(dateStr)) {
     errors.push('Termín nelze rezervovat na státní svátek')
   }
 

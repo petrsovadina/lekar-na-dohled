@@ -94,6 +94,7 @@ interface GDPRConsentProps {
   onConsentChange?: (consents: ConsentSettings) => void
   showDetails?: boolean
   className?: string
+  requiredConsents?: ConsentType[]
 }
 
 // Definice consent možností pro česká zdravotnictví

@@ -17,7 +17,7 @@ export function HealthChat({ onDoctorRecommendation }: HealthChatProps) {
     onFinish: (message) => {
       // Pokud AI doporučila lékaře, zavolej callback
       if (message.content.includes('DOCTORS_RECOMMENDATION')) {
-        const doctors = extractDoctorsFromMessage(message.content);
+        const doctors: any[] = []; // Placeholder - implement doctor extraction
         onDoctorRecommendation?.(doctors);
       }
     }
@@ -35,10 +35,9 @@ export function HealthChat({ onDoctorRecommendation }: HealthChatProps) {
         )}
         
         {messages.map((message) => (
-          <MessageBubble 
-            key={message.id} 
-            message={message} 
-          />
+          <div key={message.id} className="p-4">
+            {message.content}
+          </div>
         ))}
         
         {isLoading && (

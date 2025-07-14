@@ -157,7 +157,7 @@ export function validateIco(ico: string): ValidationResult {
   
   let sum = 0
   for (let i = 0; i < 7; i++) {
-    sum += digits[i] * weights[i]
+    sum += digits[i]! * weights[i]!
   }
   
   const remainder = sum % 11
@@ -187,7 +187,6 @@ export function validateInsuranceNumber(insuranceCode: string): InsuranceInfo {
     return { 
       isValid: false, 
       error: 'Neplatný kód zdravotní pojišťovny',
-      details: `Platné kódy: ${Object.keys(CZECH_INSURANCE_PROVIDERS).join(', ')}`
     }
   }
 
@@ -284,7 +283,7 @@ export function validateCzechEmail(email: string): ValidationResult {
 
   // Kontrola lokální části
   const [localPart, domainPart] = email.split('@')
-  if (localPart.length > 64) {
+  if (localPart && localPart.length > 64) {
     return { isValid: false, error: 'Lokální část emailu je příliš dlouhá' }
   }
 

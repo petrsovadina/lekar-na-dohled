@@ -27,7 +27,7 @@ import {
   User,
   Phone,
   Calendar,
-  IdCard,
+  CreditCard,
   Heart,
   UserPlus,
   Users,
@@ -427,7 +427,7 @@ export function RegisterForm({
           <div className="space-y-2">
             <Label htmlFor="birthNumber">Rodné číslo</Label>
             <div className="relative">
-              <IdCard className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
+              <CreditCard className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
               <Input
                 id="birthNumber"
                 placeholder="123456/7890"

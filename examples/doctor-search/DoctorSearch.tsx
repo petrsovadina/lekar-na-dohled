@@ -97,11 +97,9 @@ export function DoctorSearch({ onDoctorSelect }: DoctorSearchProps) {
       
       <div className="grid gap-4">
         {doctors.map((doctor: any) => (
-          <DoctorCard 
-            key={doctor.id} 
-            doctor={doctor} 
-            onSelect={() => onDoctorSelect?.(doctor)}
-          />
+          <div key={doctor.id} className="p-4 border rounded">
+            {doctor.first_name} {doctor.last_name}
+          </div>
         ))}
       </div>
     </div>

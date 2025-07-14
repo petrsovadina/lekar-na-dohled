@@ -339,7 +339,7 @@ export default function ReservationPage() {
                         insuranceVerified ? "text-green-600" : "text-orange-600"
                       )}>
                         {user.user_metadata?.insuranceProvider && 
-                          CZECH_INSURANCE_PROVIDERS[user.user_metadata.insuranceProvider]
+                          CZECH_INSURANCE_PROVIDERS[user.user_metadata.insuranceProvider as keyof typeof CZECH_INSURANCE_PROVIDERS]
                         }
                       </p>
                     </div>
@@ -465,7 +465,7 @@ export default function ReservationPage() {
                     <div>
                       <span className="text-gray-500">Pojišťovna:</span>
                       <div className="font-medium">
-                        {CZECH_INSURANCE_PROVIDERS[user.user_metadata.insuranceProvider]}
+                        {CZECH_INSURANCE_PROVIDERS[user.user_metadata.insuranceProvider as keyof typeof CZECH_INSURANCE_PROVIDERS]}
                       </div>
                     </div>
                   )}
@@ -529,8 +529,8 @@ export default function ReservationPage() {
                   Pro dokončení rezervace prosím udělte souhlas se zpracováním vašich osobních údajů podle GDPR.
                 </p>
                 <GDPRConsent
-                  requiredConsents={requiredConsents}
-                  onConsentChange={handleConsentComplete}
+                  requiredConsents={requiredConsents as any}
+                  onConsentChange={handleConsentComplete as any}
                   showDetails={true}
                 />
               </CardContent>

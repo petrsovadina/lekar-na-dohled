@@ -64,7 +64,7 @@ class DoctorService {
     }
 
     // Řazení podle hodnocení
-    query = query.order('rating', { ascending: false, nullsLast: true });
+    query = query.order('rating', { ascending: false });
 
     const { data, error } = await query;
 

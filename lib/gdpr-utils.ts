@@ -30,7 +30,7 @@ export interface GDPRCompliantData {
 export interface AuditLogEntry {
   id: string
   userId?: string
-  action: 'consent_given' | 'consent_revoked' | 'data_access' | 'data_export' | 'data_deletion' | 'anonymization'
+  action: 'consent_given' | 'consent_revoked' | 'data_access' | 'data_export' | 'data_deletion' | 'anonymization' | 'create' | 'update' | 'delete'
   dataType: string
   timestamp: Date
   ipAddress: string
@@ -448,7 +448,7 @@ export function maskSensitiveData(data: any): any {
     // Maskování emailu
     if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data)) {
       const [username, domain] = data.split('@')
-      return `${username.charAt(0)}***@${domain}`
+      return `${username?.charAt(0) || 'u'}***@${domain}`
     }
     
     // Maskování telefonního čísla

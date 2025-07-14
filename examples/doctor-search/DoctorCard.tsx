@@ -59,7 +59,7 @@ export function DoctorCard({ doctor, onSelect }: DoctorCardProps) {
             
             <div className="flex gap-2 mt-3">
               {doctor.accepts_new_patients && (
-                <Badge variant="success">Přijímá nové pacienty</Badge>
+                <Badge variant="secondary">Přijímá nové pacienty</Badge>
               )}
               {doctor.has_online_booking && (
                 <Badge variant="secondary">

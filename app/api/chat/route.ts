@@ -179,7 +179,7 @@ Mohu vám pomoci najít vhodného specialistu ve vašem regionu. Řekněte mi, v
       }
     })
     
-    return result.toAIStreamResponse()
+    return result.toDataStreamResponse()
     
   } catch (error) {
     console.error('Chyba v AI chat API:', error)

@@ -38,7 +38,7 @@ export async function POST(request: NextRequest) {
       maxTokens: 500,
     });
 
-    return result.toAIStreamResponse();
+    return result.toDataStreamResponse();
     
   } catch (error) {
     console.error('Health chat error:', error);

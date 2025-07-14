@@ -2,10 +2,53 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Czech diacritics font support */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap&subset=latin,latin-ext');
+/* DoktorNaDohled - Globální styly pro českou zdravotnickou platformu */
 
+/* České fonty s plnou podporou diakritiky */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Source+Sans+Pro:ital,wght@0,200..900;1,200..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap&subset=latin,latin-ext');
+
+/* České typografické fonty pro zdravotnictví */
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap&subset=latin,latin-ext');
+
+/* Rozšířené CSS proměnné pro českou lokalizaci */
 :root {
+  /* Česká barevná paleta pro zdravotnictví */
+  --cz-health-primary: #27ae60;
+  --cz-health-secondary: #3498db;
+  --cz-health-emergency: #e74c3c;
+  --cz-health-warning: #f39c12;
+  --cz-health-success: #2ecc71;
+  --cz-health-info: #17a2b8;
+  --cz-health-light: #ecf0f1;
+  --cz-health-dark: #2c3e50;
+  
+  /* České zdravotní pojišťovny barvy */
+  --vzp-blue: #0066cc;
+  --vozp-green: #009639;
+  --cpzp-orange: #ff6600;
+  --ozp-purple: #663399;
+  --zps-red: #cc0000;
+  
+  /* Fonty pro různé účely */
+  --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  --font-secondary: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-medical: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: 'Open Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  
+  /* Spacing pro český obsah */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 3rem;
+  
+  /* Shadows pro českou UI */
+  --shadow-subtle: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --shadow-card: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-modal: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+
+  /* Shadcn/UI variables */
   --background: 0 0% 100%;
   --foreground: 222.2 84% 4.9%;
   --card: 0 0% 100%;

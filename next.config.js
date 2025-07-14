@@ -1,15 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Enable experimental features for AI SDK
-  experimental: {
-    serverComponentsExternalPackages: ['@ai-sdk/openai', 'groq'],
-  },
-  
-  // Czech localization support
-  i18n: {
-    locales: ['cs'],
-    defaultLocale: 'cs',
-  },
+  // External packages for server components (Next.js 15+)
+  serverExternalPackages: ['@ai-sdk/openai', 'groq'],
   
   // Environment variables for production
   env: {

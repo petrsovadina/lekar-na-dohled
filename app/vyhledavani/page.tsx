@@ -322,7 +322,7 @@ export default function VyhledavaniPage() {
               {showChat ? (
                 <div className="space-y-4">
                   <ChatInterface
-                    onDoctorRecommendation={handleChatRecommendation}
+                    onDoctorRecommendation={handleChatRecommendation as any}
                     className="h-[600px]"
                   />
                   <Card className="bg-blue-50 border-blue-200">

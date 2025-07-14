@@ -111,10 +111,11 @@ export function BookingCalendar({
         const startDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1)
         const endDate = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0)
         
-        const response = await fetch(`/api/doctors/${doctor.id}/availability?` + new URLSearchParams({
-          start_date: startDate.toISOString().split('T')[0],
-          end_date: endDate.toISOString().split('T')[0]
-        }))
+        const params = new URLSearchParams({
+          start_date: startDate.toISOString().split('T')[0]!,
+          end_date: endDate.toISOString().split('T')[0]!
+        })
+        const response = await fetch(`/api/doctors/${doctor.id}/availability?` + params)
         
         if (response.ok) {
           const data = await response.json()
@@ -147,11 +148,11 @@ export function BookingCalendar({
       const date = new Date(startDate)
       date.setDate(startDate.getDate() + i)
       
-      const dateStr = date.toISOString().split('T')[0]
+      const dateStr = date.toISOString().split('T')[0]!
       const isCurrentMonth = date.getMonth() === month
       const isToday = date.getTime() === today.getTime()
       const isPast = date < today
-      const isHoliday = CZECH_HOLIDAYS[dateStr]
+      const isHoliday = CZECH_HOLIDAYS[dateStr as keyof typeof CZECH_HOLIDAYS]
       const isWeekend = date.getDay() === 0 || date.getDay() === 6
       
       // Najít dostupnost pro tento den
@@ -188,7 +189,7 @@ export function BookingCalendar({
     return dayAvailability.time_slots.map(slot => ({
       ...slot,
       available: !slot.is_booked,
-      holiday: CZECH_HOLIDAYS[dateStr],
+      holiday: CZECH_HOLIDAYS[dateStr as keyof typeof CZECH_HOLIDAYS],
       doctorNote: dayAvailability.notes
     }))
   }, [selectedDate, availability])
@@ -229,8 +230,8 @@ export function BookingCalendar({
 
     const [startTime] = selectedTimeSlot.split(' - ')
     const appointmentDateTime = new Date(selectedDate)
-    const [hours, minutes] = startTime.split(':').map(Number)
-    appointmentDateTime.setHours(hours, minutes, 0, 0)
+    const [hours, minutes] = startTime!.split(':').map(Number)
+    appointmentDateTime.setHours(hours!, minutes!, 0, 0)
 
     const bookingData: AppointmentBookingData = {
       doctorId: doctor.id,
@@ -331,7 +332,7 @@ export function BookingCalendar({
                 <button
                   key={index}
                   onClick={() => handleDateSelect(calDay.date)}
-                  disabled={calDay.isPast || !calDay.isCurrentMonth || calDay.isHoliday || !calDay.hasAvailableSlots}
+                  disabled={calDay.isPast || !calDay.isCurrentMonth || !!calDay.isHoliday || !calDay.hasAvailableSlots}
                   className={cn(
                     "p-2 text-sm border rounded-lg transition-colors relative",
                     calDay.isCurrentMonth 

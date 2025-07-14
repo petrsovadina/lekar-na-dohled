@@ -300,7 +300,7 @@ export async function recordGDPRConsent(
 /**
  * Odvolá GDPR souhlas
  */
-export async function withdrawGDPRConsent(consentType: string): Promise<boolean> {
+export async function revokeGDPRConsent(consentType: string): Promise<boolean> {
   const supabase = createBrowserClient()
   const user = await getCurrentUser()
   
@@ -327,6 +327,35 @@ export async function withdrawGDPRConsent(consentType: string): Promise<boolean>
   } catch (error) {
     console.error('Chyba při odvolávání GDPR souhlasu:', error)
     return false
+  }
+}
+
+/**
+ * Získá historii GDPR souhlasů uživatele
+ */
+export async function getGDPRConsentHistory(userId?: string): Promise<any[]> {
+  const supabase = createBrowserClient()
+  const user = userId ? { id: userId } : await getCurrentUser()
+  
+  if (!user) {
+    throw new Error('Uživatel není přihlášen')
+  }
+  
+  try {
+    const { data, error } = await supabase
+      .from('gdpr_consents')
+      .select('*')
+      .eq('user_id', user.id)
+      .order('created_at', { ascending: false })
+    
+    if (error) {
+      throw new Error(`Chyba při načítání historie GDPR souhlasů: ${error.message}`)
+    }
+    
+    return data || []
+  } catch (error) {
+    console.error('Chyba při načítání historie GDPR souhlasů:', error)
+    return []
   }
 }
 
@@ -368,7 +397,7 @@ export function handleSupabaseError(error: any): string {
   
   // Hledání podle kódu chyby
   if (error.code && errorMap[error.code]) {
-    return errorMap[error.code]
+    return errorMap[error.code] || 'Neznámá chyba'
   }
   
   // Hledání podle zprávy

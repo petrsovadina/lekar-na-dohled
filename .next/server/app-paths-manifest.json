@@ -1,1 +1,14 @@
-{}
+{
+  "/api/appointments/route": "app/api/appointments/route.js",
+  "/api/chat/route": "app/api/chat/route.js",
+  "/api/doctors/route": "app/api/doctors/route.js",
+  "/api/sitemap/route": "app/api/sitemap/route.js",
+  "/api/robots/route": "app/api/robots/route.js",
+  "/api/gdpr/route": "app/api/gdpr/route.js",
+  "/api/health/route": "app/api/health/route.js",
+  "/_not-found/page": "app/_not-found/page.js",
+  "/rezervace/page": "app/rezervace/page.js",
+  "/vyhledavani/page": "app/vyhledavani/page.js",
+  "/chat/page": "app/chat/page.js",
+  "/page": "app/page.js"
+}
