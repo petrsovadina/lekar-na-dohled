@@ -16,7 +16,15 @@
       "Bash(python:*)",
       "Bash(python -m pytest:*)",
       "Bash(python3 -m pytest:*)",
-      "WebFetch(domain:docs.anthropic.com)"
+      "WebFetch(domain:docs.anthropic.com)",
+      "mcp__desktop-commander__list_directory",
+      "mcp__desktop-commander__search_files",
+      "mcp__desktop-commander__read_file",
+      "Bash(npm install:*)",
+      "Bash(npm run build:*)",
+      "Bash(npm run dev:*)",
+      "mcp__desktop-commander__create_directory",
+      "Bash(npm run type-check:*)"
     ],
     "deny": []
   }

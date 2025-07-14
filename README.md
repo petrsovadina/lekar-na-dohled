@@ -1,296 +1,296 @@
-# Context Engineering Template
+# Šablona pro Context Engineering
 
-A comprehensive template for getting started with Context Engineering - the discipline of engineering context for AI coding assistants so they have the information necessary to get the job done end to end.
+Komplexní šablona pro začátek s Context Engineering – disciplínou navrhování kontextu pro AI asistenty při programování, aby měli všechny potřebné informace pro kompletní splnění úkolu.
 
-> **Context Engineering is 10x better than prompt engineering and 100x better than vibe coding.**
+> **Context Engineering je 10x lepší než prompt engineering a 100x lepší než „vibe coding“.**
 
-## 🚀 Quick Start
+## 🚀 Rychlý start
 
 ```bash
-# 1. Clone this template
+# 1. Naklonujte tuto šablonu
 git clone https://github.com/coleam00/Context-Engineering-Intro.git
 cd Context-Engineering-Intro
 
-# 2. Set up your project rules (optional - template provided)
-# Edit CLAUDE.md to add your project-specific guidelines
+# 2. Nastavte pravidla projektu (volitelné – šablona je součástí)
+# Upravte CLAUDE.md a přidejte specifické pokyny pro váš projekt
 
-# 3. Add examples (highly recommended)
-# Place relevant code examples in the examples/ folder
+# 3. Přidejte příklady (velmi doporučeno)
+# Umístěte relevantní ukázky kódu do složky examples/
 
-# 4. Create your initial feature request
-# Edit INITIAL.md with your feature requirements
+# 4. Vytvořte počáteční požadavek na funkci
+# Upravte INITIAL.md s požadavky na funkci
 
-# 5. Generate a comprehensive PRP (Product Requirements Prompt)
-# In Claude Code, run:
+# 5. Vygenerujte komplexní PRP (Product Requirements Prompt)
+# V Claude Code spusťte:
 /generate-prp INITIAL.md
 
-# 6. Execute the PRP to implement your feature
-# In Claude Code, run:
+# 6. Proveďte PRP pro implementaci funkce
+# V Claude Code spusťte:
 /execute-prp PRPs/your-feature-name.md
 ```
 
-## 📚 Table of Contents
+## 📚 Obsah
 
-- [What is Context Engineering?](#what-is-context-engineering)
-- [Template Structure](#template-structure)
-- [Step-by-Step Guide](#step-by-step-guide)
-- [Writing Effective INITIAL.md Files](#writing-effective-initialmd-files)
-- [The PRP Workflow](#the-prp-workflow)
-- [Using Examples Effectively](#using-examples-effectively)
-- [Best Practices](#best-practices)
+- [Co je Context Engineering?](#co-je-context-engineering)
+- [Struktura šablony](#struktura-šablony)
+- [Krok za krokem](#krok-za-krokem)
+- [Jak psát efektivní INITIAL.md](#jak-psat-efektivni-initialmd)
+- [PRP workflow](#prp-workflow)
+- [Efektivní využití příkladů](#efektivni-vyuziti-prikladu)
+- [Osvědčené postupy](#osvedcene-postupy)
 
-## What is Context Engineering?
+## Co je Context Engineering?
 
-Context Engineering represents a paradigm shift from traditional prompt engineering:
+Context Engineering představuje posun oproti tradičnímu prompt engineeringu:
 
 ### Prompt Engineering vs Context Engineering
 
 **Prompt Engineering:**
-- Focuses on clever wording and specific phrasing
-- Limited to how you phrase a task
-- Like giving someone a sticky note
+- Zaměřuje se na chytré formulace a konkrétní zadání
+- Omezeno na to, jak úkol popíšete
+- Jako když někomu dáte lísteček s poznámkou
 
 **Context Engineering:**
-- A complete system for providing comprehensive context
-- Includes documentation, examples, rules, patterns, and validation
-- Like writing a full screenplay with all the details
+- Kompletní systém pro poskytování kontextu
+- Zahrnuje dokumentaci, příklady, pravidla, vzory a validaci
+- Jako když napíšete celý scénář se všemi detaily
 
-### Why Context Engineering Matters
+### Proč je Context Engineering důležitý
 
-1. **Reduces AI Failures**: Most agent failures aren't model failures - they're context failures
-2. **Ensures Consistency**: AI follows your project patterns and conventions
-3. **Enables Complex Features**: AI can handle multi-step implementations with proper context
-4. **Self-Correcting**: Validation loops allow AI to fix its own mistakes
+1. **Snižuje selhání AI**: Většina selhání není způsobena modelem, ale nedostatkem kontextu
+2. **Zajišťuje konzistenci**: AI dodržuje vzory a konvence projektu
+3. **Umožňuje komplexní funkce**: AI zvládne vícekrokové implementace díky správnému kontextu
+4. **Samoopravné**: Validační smyčky umožňují AI opravovat vlastní chyby
 
-## Template Structure
+## Struktura šablony
 
 ```
 context-engineering-intro/
 ├── .claude/
 │   ├── commands/
-│   │   ├── generate-prp.md    # Generates comprehensive PRPs
-│   │   └── execute-prp.md     # Executes PRPs to implement features
-│   └── settings.local.json    # Claude Code permissions
+│   │   ├── generate-prp.md    # Generuje komplexní PRP
+│   │   └── execute-prp.md     # Implementuje funkce dle PRP
+│   └── settings.local.json    # Oprávnění pro Claude Code
 ├── PRPs/
 │   ├── templates/
-│   │   └── prp_base.md       # Base template for PRPs
-│   └── EXAMPLE_multi_agent_prp.md  # Example of a complete PRP
-├── examples/                  # Your code examples (critical!)
-├── CLAUDE.md                 # Global rules for AI assistant
-├── INITIAL.md               # Template for feature requests
-├── INITIAL_EXAMPLE.md       # Example feature request
-└── README.md                # This file
+│   │   └── prp_base.md       # Základní šablona PRP
+│   └── EXAMPLE_multi_agent_prp.md  # Ukázka kompletního PRP
+├── examples/                  # Vaše ukázky kódu (klíčové!)
+├── CLAUDE.md                 # Globální pravidla pro AI asistenta
+├── INITIAL.md               # Šablona pro požadavky na funkce
+├── INITIAL_EXAMPLE.md       # Ukázkový požadavek na funkci
+└── README.md                # Tento soubor
 ```
 
-This template doesn't focus on RAG and tools with context engineering because I have a LOT more in store for that soon. ;)
+Tato šablona se zatím nezaměřuje na RAG a nástroje v rámci context engineeringu – brzy toho bude mnohem víc. ;)
 
-## Step-by-Step Guide
+## Krok za krokem
 
-### 1. Set Up Global Rules (CLAUDE.md)
+### 1. Nastavte globální pravidla (CLAUDE.md)
 
-The `CLAUDE.md` file contains project-wide rules that the AI assistant will follow in every conversation. The template includes:
+Soubor `CLAUDE.md` obsahuje pravidla platná pro celý projekt, která AI asistent dodržuje v každé konverzaci. Šablona obsahuje:
 
-- **Project awareness**: Reading planning docs, checking tasks
-- **Code structure**: File size limits, module organization
-- **Testing requirements**: Unit test patterns, coverage expectations
-- **Style conventions**: Language preferences, formatting rules
-- **Documentation standards**: Docstring formats, commenting practices
+- **Povědomí o projektu**: Čtení plánovacích dokumentů, kontrola úkolů
+- **Struktura kódu**: Limity velikosti souborů, organizace modulů
+- **Požadavky na testování**: Vzory unit testů, očekávání pokrytí
+- **Konvence stylu**: Preferované jazyky, pravidla formátování
+- **Standardy dokumentace**: Formáty docstringů, komentování
 
-**You can use the provided template as-is or customize it for your project.**
+**Můžete použít šablonu tak, jak je, nebo ji upravit pro svůj projekt.**
 
-### 2. Create Your Initial Feature Request
+### 2. Vytvořte počáteční požadavek na funkci
 
-Edit `INITIAL.md` to describe what you want to build:
+Upravte `INITIAL.md` a popište, co chcete vytvořit:
 
 ```markdown
 ## FEATURE:
-[Describe what you want to build - be specific about functionality and requirements]
+[Popište, co chcete vytvořit – buďte konkrétní ohledně funkcionality a požadavků]
 
 ## EXAMPLES:
-[List any example files in the examples/ folder and explain how they should be used]
+[Vyjmenujte soubory ve složce examples/ a vysvětlete, jak je použít]
 
 ## DOCUMENTATION:
-[Include links to relevant documentation, APIs, or MCP server resources]
+[Přidejte odkazy na relevantní dokumentaci, API nebo MCP server]
 
 ## OTHER CONSIDERATIONS:
-[Mention any gotchas, specific requirements, or things AI assistants commonly miss]
+[Zmiňte úskalí, specifické požadavky nebo věci, které AI často přehlíží]
 ```
 
-**See `INITIAL_EXAMPLE.md` for a complete example.**
+**Kompletní příklad najdete v `INITIAL_EXAMPLE.md`.**
 
-### 3. Generate the PRP
+### 3. Vygenerujte PRP
 
-PRPs (Product Requirements Prompts) are comprehensive implementation blueprints that include:
+PRP (Product Requirements Prompt) je komplexní plán implementace obsahující:
 
-- Complete context and documentation
-- Implementation steps with validation
-- Error handling patterns
-- Test requirements
+- Kompletní kontext a dokumentaci
+- Kroky implementace s validací
+- Vzory pro ošetření chyb
+- Požadavky na testování
 
-They are similar to PRDs (Product Requirements Documents) but are crafted more specifically to instruct an AI coding assistant.
+Jsou podobné PRD (Product Requirements Document), ale jsou určeny přímo pro AI asistenta.
 
-Run in Claude Code:
+V Claude Code spusťte:
 ```bash
 /generate-prp INITIAL.md
 ```
 
-**Note:** The slash commands are custom commands defined in `.claude/commands/`. You can view their implementation:
-- `.claude/commands/generate-prp.md` - See how it researches and creates PRPs
-- `.claude/commands/execute-prp.md` - See how it implements features from PRPs
+**Poznámka:** Slash příkazy jsou definovány v `.claude/commands/`. Jejich implementaci najdete zde:
+- `.claude/commands/generate-prp.md` – Jak vyhledává a vytváří PRP
+- `.claude/commands/execute-prp.md` – Jak implementuje funkce z PRP
 
-The `$ARGUMENTS` variable in these commands receives whatever you pass after the command name (e.g., `INITIAL.md` or `PRPs/your-feature.md`).
+Proměnná `$ARGUMENTS` přijímá vše, co zadáte za název příkazu (např. `INITIAL.md` nebo `PRPs/your-feature.md`).
 
-This command will:
-1. Read your feature request
-2. Research the codebase for patterns
-3. Search for relevant documentation
-4. Create a comprehensive PRP in `PRPs/your-feature-name.md`
+Tento příkaz:
+1. Přečte váš požadavek na funkci
+2. Prozkoumá kód pro vzory
+3. Najde relevantní dokumentaci
+4. Vytvoří komplexní PRP v `PRPs/your-feature-name.md`
 
-### 4. Execute the PRP
+### 4. Proveďte PRP
 
-Once generated, execute the PRP to implement your feature:
+Po vygenerování spusťte PRP pro implementaci funkce:
 
 ```bash
 /execute-prp PRPs/your-feature-name.md
 ```
 
-The AI coding assistant will:
-1. Read all context from the PRP
-2. Create a detailed implementation plan
-3. Execute each step with validation
-4. Run tests and fix any issues
-5. Ensure all success criteria are met
+AI asistent:
+1. Načte celý kontext z PRP
+2. Vytvoří detailní plán implementace
+3. Provede každý krok s validací
+4. Spustí testy a opraví chyby
+5. Ověří splnění všech kritérií
 
-## Writing Effective INITIAL.md Files
+## Jak psát efektivní INITIAL.md
 
-### Key Sections Explained
+### Klíčové sekce
 
-**FEATURE**: Be specific and comprehensive
-- ❌ "Build a web scraper"
-- ✅ "Build an async web scraper using BeautifulSoup that extracts product data from e-commerce sites, handles rate limiting, and stores results in PostgreSQL"
+**FEATURE**: Buďte konkrétní a důkladní
+- ❌ "Vytvoř web scraper"
+- ✅ "Vytvoř asynchronní web scraper pomocí BeautifulSoup, který získává produktová data z e-shopů, řeší rate limiting a ukládá výsledky do PostgreSQL"
 
-**EXAMPLES**: Leverage the examples/ folder
-- Place relevant code patterns in `examples/`
-- Reference specific files and patterns to follow
-- Explain what aspects should be mimicked
+**EXAMPLES**: Využijte složku examples/
+- Umístěte relevantní vzory kódu do `examples/`
+- Odkazujte na konkrétní soubory a vzory
+- Vysvětlete, co má být převzato
 
-**DOCUMENTATION**: Include all relevant resources
-- API documentation URLs
-- Library guides
-- MCP server documentation
-- Database schemas
+**DOCUMENTATION**: Přidejte všechny relevantní zdroje
+- Odkazy na API dokumentaci
+- Návody ke knihovnám
+- Dokumentaci MCP serveru
+- Schémata databáze
 
-**OTHER CONSIDERATIONS**: Capture important details
-- Authentication requirements
-- Rate limits or quotas
-- Common pitfalls
-- Performance requirements
+**OTHER CONSIDERATIONS**: Zachyťte důležité detaily
+- Požadavky na autentizaci
+- Limity nebo kvóty
+- Běžné chyby
+- Výkonnostní požadavky
 
-## The PRP Workflow
+## PRP workflow
 
-### How /generate-prp Works
+### Jak funguje /generate-prp
 
-The command follows this process:
+Příkaz postupuje takto:
 
-1. **Research Phase**
-   - Analyzes your codebase for patterns
-   - Searches for similar implementations
-   - Identifies conventions to follow
+1. **Fáze průzkumu**
+   - Analyzuje kód pro vzory
+   - Hledá podobné implementace
+   - Identifikuje konvence
 
-2. **Documentation Gathering**
-   - Fetches relevant API docs
-   - Includes library documentation
-   - Adds gotchas and quirks
+2. **Shromažďování dokumentace**
+   - Získává relevantní API dokumentaci
+   - Přidává dokumentaci knihoven
+   - Zahrnuje úskalí a zvláštnosti
 
-3. **Blueprint Creation**
-   - Creates step-by-step implementation plan
-   - Includes validation gates
-   - Adds test requirements
+3. **Vytvoření plánu**
+   - Vytváří krok za krokem plán implementace
+   - Přidává validační brány
+   - Zahrnuje požadavky na testy
 
-4. **Quality Check**
-   - Scores confidence level (1-10)
-   - Ensures all context is included
+4. **Kontrola kvality**
+   - Uděluje skóre jistoty (1–10)
+   - Ověřuje kompletnost kontextu
 
-### How /execute-prp Works
+### Jak funguje /execute-prp
 
-1. **Load Context**: Reads the entire PRP
-2. **Plan**: Creates detailed task list using TodoWrite
-3. **Execute**: Implements each component
-4. **Validate**: Runs tests and linting
-5. **Iterate**: Fixes any issues found
-6. **Complete**: Ensures all requirements met
+1. **Načtení kontextu**: Přečte celý PRP
+2. **Plánování**: Vytvoří detailní seznam úkolů pomocí TodoWrite
+3. **Implementace**: Provede jednotlivé komponenty
+4. **Validace**: Spustí testy a lint
+5. **Iterace**: Opraví nalezené chyby
+6. **Dokončení**: Ověří splnění všech požadavků
 
-See `PRPs/EXAMPLE_multi_agent_prp.md` for a complete example of what gets generated.
+Kompletní ukázku najdete v `PRPs/EXAMPLE_multi_agent_prp.md`.
 
-## Using Examples Effectively
+## Efektivní využití příkladů
 
-The `examples/` folder is **critical** for success. AI coding assistants perform much better when they can see patterns to follow.
+Složka `examples/` je **klíčová** pro úspěch. AI asistenti dosahují lepších výsledků, když mají vzory, které mohou následovat.
 
-### What to Include in Examples
+### Co zahrnout do příkladů
 
-1. **Code Structure Patterns**
-   - How you organize modules
-   - Import conventions
-   - Class/function patterns
+1. **Vzory struktury kódu**
+   - Organizace modulů
+   - Konvence importů
+   - Vzory tříd/funkcí
 
-2. **Testing Patterns**
-   - Test file structure
-   - Mocking approaches
-   - Assertion styles
+2. **Vzory testování**
+   - Struktura testovacích souborů
+   - Přístupy k mockování
+   - Styl asercí
 
-3. **Integration Patterns**
-   - API client implementations
-   - Database connections
-   - Authentication flows
+3. **Vzory integrace**
+   - Implementace API klientů
+   - Připojení k databázi
+   - Autentizační toky
 
-4. **CLI Patterns**
-   - Argument parsing
-   - Output formatting
-   - Error handling
+4. **Vzory CLI**
+   - Parsování argumentů
+   - Formátování výstupu
+   - Ošetření chyb
 
-### Example Structure
+### Ukázková struktura
 
 ```
 examples/
-├── README.md           # Explains what each example demonstrates
-├── cli.py             # CLI implementation pattern
-├── agent/             # Agent architecture patterns
-│   ├── agent.py      # Agent creation pattern
-│   ├── tools.py      # Tool implementation pattern
-│   └── providers.py  # Multi-provider pattern
-└── tests/            # Testing patterns
-    ├── test_agent.py # Unit test patterns
-    └── conftest.py   # Pytest configuration
+├── README.md           # Vysvětluje, co jednotlivé příklady ukazují
+├── cli.py             # Vzor implementace CLI
+├── agent/             # Vzory architektury agentů
+│   ├── agent.py      # Vzor vytvoření agenta
+│   ├── tools.py      # Vzor implementace nástrojů
+│   └── providers.py  # Vzor pro více poskytovatelů
+└── tests/            # Vzory testování
+    ├── test_agent.py # Vzory unit testů
+    └── conftest.py   # Konfigurace pro pytest
 ```
 
-## Best Practices
+## Osvědčené postupy
 
-### 1. Be Explicit in INITIAL.md
-- Don't assume the AI knows your preferences
-- Include specific requirements and constraints
-- Reference examples liberally
+### 1. Buďte explicitní v INITIAL.md
+- Nepředpokládejte, že AI zná vaše preference
+- Uveďte konkrétní požadavky a omezení
+- Odkazujte na příklady
 
-### 2. Provide Comprehensive Examples
-- More examples = better implementations
-- Show both what to do AND what not to do
-- Include error handling patterns
+### 2. Poskytněte komplexní příklady
+- Více příkladů = lepší implementace
+- Ukažte, co dělat i co nedělat
+- Zahrňte vzory ošetření chyb
 
-### 3. Use Validation Gates
-- PRPs include test commands that must pass
-- AI will iterate until all validations succeed
-- This ensures working code on first try
+### 3. Používejte validační brány
+- PRP obsahují testovací příkazy, které musí projít
+- AI iteruje, dokud všechny validace neprojdou
+- Zajišťuje funkční kód na první pokus
 
-### 4. Leverage Documentation
-- Include official API docs
-- Add MCP server resources
-- Reference specific documentation sections
+### 4. Využívejte dokumentaci
+- Přidejte oficiální API dokumentaci
+- Přidejte zdroje MCP serveru
+- Odkazujte na konkrétní sekce dokumentace
 
-### 5. Customize CLAUDE.md
-- Add your conventions
-- Include project-specific rules
-- Define coding standards
+### 5. Upravte CLAUDE.md
+- Přidejte své konvence
+- Zahrňte pravidla specifická pro projekt
+- Definujte standardy kódování
 
-## Resources
+## Zdroje
 
-- [Claude Code Documentation](https://docs.anthropic.com/en/docs/claude-code)
-- [Context Engineering Best Practices](https://www.philschmid.de/context-engineering)
+- [Claude Code Dokumentace](https://docs.anthropic.com/en/docs/claude-code)
+- [Osvědčené postupy Context Engineeringu](https://www.philschmid.de/context-engineering)

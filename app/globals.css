@@ -1,0 +1,274 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Czech diacritics font support */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap&subset=latin,latin-ext');
+
+:root {
+  --background: 0 0% 100%;
+  --foreground: 222.2 84% 4.9%;
+  --card: 0 0% 100%;
+  --card-foreground: 222.2 84% 4.9%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 222.2 84% 4.9%;
+  --primary: 221.2 83.2% 53.3%;
+  --primary-foreground: 210 40% 98%;
+  --secondary: 210 40% 96%;
+  --secondary-foreground: 222.2 84% 4.9%;
+  --muted: 210 40% 96%;
+  --muted-foreground: 215.4 16.3% 46.9%;
+  --accent: 210 40% 96%;
+  --accent-foreground: 222.2 84% 4.9%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 210 40% 98%;
+  --border: 214.3 31.8% 91.4%;
+  --input: 214.3 31.8% 91.4%;
+  --ring: 221.2 83.2% 53.3%;
+  --radius: 0.5rem;
+  
+  /* Healthcare specific colors */
+  --health-primary: 142 76% 36%;
+  --health-secondary: 210 40% 96%;
+  --health-accent: 45 93% 47%;
+  --health-emergency: 0 84% 60%;
+  --health-success: 142 76% 36%;
+  --health-warning: 45 93% 47%;
+  --health-info: 221 83% 53%;
+}
+
+.dark {
+  --background: 222.2 84% 4.9%;
+  --foreground: 210 40% 98%;
+  --card: 222.2 84% 4.9%;
+  --card-foreground: 210 40% 98%;
+  --popover: 222.2 84% 4.9%;
+  --popover-foreground: 210 40% 98%;
+  --primary: 217.2 91.2% 59.8%;
+  --primary-foreground: 222.2 84% 4.9%;
+  --secondary: 217.2 32.6% 17.5%;
+  --secondary-foreground: 210 40% 98%;
+  --muted: 217.2 32.6% 17.5%;
+  --muted-foreground: 215 20.2% 65.1%;
+  --accent: 217.2 32.6% 17.5%;
+  --accent-foreground: 210 40% 98%;
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 210 40% 98%;
+  --border: 217.2 32.6% 17.5%;
+  --input: 217.2 32.6% 17.5%;
+  --ring: 224.3 76.3% 94.1%;
+}
+
+* {
+  border-color: hsl(var(--border));
+}
+
+body {
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+  font-feature-settings: "rlig" 1, "calt" 1;
+}
+
+/* Czech typography improvements */
+html {
+  font-feature-settings: "kern" 1, "liga" 1, "calt" 1, "pnum" 1, "tnum" 0, "onum" 1, "lnum" 0, "dlig" 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Ensure Czech diacritics are properly displayed */
+.czech-text {
+  font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
+  font-variant-ligatures: common-ligatures;
+  text-rendering: optimizeLegibility;
+}
+
+/* Healthcare specific utility classes */
+.health-gradient {
+  background: linear-gradient(135deg, hsl(var(--health-primary)) 0%, hsl(var(--health-info)) 100%);
+}
+
+.health-emergency {
+  color: hsl(var(--health-emergency));
+}
+
+.health-success {
+  color: hsl(var(--health-success));
+}
+
+.health-warning {
+  color: hsl(var(--health-warning));
+}
+
+/* GDPR compliance styles */
+.gdpr-banner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  background: hsl(var(--card));
+  border-top: 1px solid hsl(var(--border));
+  padding: 1rem;
+  box-shadow: 0 -4px 6px -1px rgb(0 0 0 / 0.1);
+}
+
+/* Medical icon improvements */
+.medical-icon {
+  filter: drop-shadow(0 1px 2px rgb(0 0 0 / 0.1));
+}
+
+/* Animation for health emergency notifications */
+@keyframes pulse-health {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+.health-pulse {
+  animation: pulse-health 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Accessibility improvements for Czech users */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* High contrast mode for visually impaired users */
+@media (prefers-contrast: high) {
+  :root {
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+  }
+}
+
+/* Print styles for medical documents */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  
+  body {
+    background: white !important;
+    color: black !important;
+  }
+  
+  .health-card {
+    border: 1px solid #000 !important;
+    break-inside: avoid;
+  }
+}
+
+/* Focus styles for keyboard navigation (accessibility) */
+*:focus-visible {
+  outline: 2px solid hsl(var(--ring));
+  outline-offset: 2px;
+}
+
+/* Loading states for healthcare data */
+.loading-skeleton {
+  background: linear-gradient(
+    90deg,
+    hsl(var(--muted)) 25%,
+    hsl(var(--muted-foreground) / 0.1) 37%,
+    hsl(var(--muted)) 63%
+  );
+  background-size: 400% 100%;
+  animation: skeleton 1.4s ease-in-out infinite;
+}
+
+@keyframes skeleton {
+  0% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Czech healthcare specific component styles */
+.doctor-card {
+  background: hsl(var(--card));
+  border: 1px solid hsl(var(--border));
+  border-radius: var(--radius);
+  transition: all 0.2s ease-in-out;
+}
+
+.doctor-card:hover {
+  box-shadow: 0 4px 12px rgb(0 0 0 / 0.1);
+  transform: translateY(-1px);
+}
+
+.insurance-badge {
+  background: hsl(var(--health-info) / 0.1);
+  color: hsl(var(--health-info));
+  border: 1px solid hsl(var(--health-info) / 0.2);
+}
+
+.specialization-tag {
+  background: hsl(var(--health-primary) / 0.1);
+  color: hsl(var(--health-primary));
+  border: 1px solid hsl(var(--health-primary) / 0.2);
+}
+
+/* Chat interface styles */
+.chat-container {
+  height: calc(100vh - 200px);
+  min-height: 400px;
+}
+
+.chat-message {
+  border-radius: var(--radius);
+  padding: 0.75rem 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.chat-message.user {
+  background: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+  margin-left: 2rem;
+}
+
+.chat-message.assistant {
+  background: hsl(var(--muted));
+  color: hsl(var(--muted-foreground));
+  margin-right: 2rem;
+}
+
+/* Czech form validation styles */
+.form-error {
+  color: hsl(var(--destructive));
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+
+.form-success {
+  color: hsl(var(--health-success));
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+
+/* Responsive design for Czech mobile users */
+@media (max-width: 640px) {
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  .doctor-card {
+    margin-bottom: 1rem;
+  }
+  
+  .chat-message.user,
+  .chat-message.assistant {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}

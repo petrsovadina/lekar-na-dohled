@@ -1,0 +1,218 @@
+{
+  "version": 2,
+  "name": "doktor-na-dohled",
+  "alias": ["doktor-na-dohled.vercel.app"],
+  "regions": ["fra1", "ams1"],
+  "env": {
+    "NODE_ENV": "production",
+    "NEXT_PUBLIC_APP_URL": "https://doktor-na-dohled.vercel.app",
+    "NEXT_PUBLIC_APP_NAME": "DoktorNaDohled",
+    "NEXT_PUBLIC_SUPABASE_URL": "@supabase_url",
+    "NEXT_PUBLIC_SUPABASE_ANON_KEY": "@supabase_anon_key",
+    "SUPABASE_SERVICE_ROLE_KEY": "@supabase_service_role_key",
+    "OPENAI_API_KEY": "@openai_api_key",
+    "GROQ_API_KEY": "@groq_api_key",
+    "NEXT_PUBLIC_GTAG_ID": "@gtag_id",
+    "SMTP_HOST": "@smtp_host",
+    "SMTP_PORT": "@smtp_port",
+    "SMTP_USER": "@smtp_user",
+    "SMTP_PASSWORD": "@smtp_password",
+    "WEBHOOK_SECRET": "@webhook_secret",
+    "ENCRYPTION_KEY": "@encryption_key"
+  },
+  "build": {
+    "env": {
+      "ANALYZE": "false",
+      "SKIP_TYPE_CHECK": "false"
+    }
+  },
+  "functions": {
+    "app/api/**/*.ts": {
+      "maxDuration": 30
+    },
+    "app/api/chat/route.ts": {
+      "maxDuration": 60
+    },
+    "app/api/appointments/route.ts": {
+      "maxDuration": 45
+    },
+    "app/api/doctors/route.ts": {
+      "maxDuration": 30
+    },
+    "app/api/gdpr/route.ts": {
+      "maxDuration": 30
+    }
+  },
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "camera=(), microphone=(), geolocation=(self), payment=()"
+        },
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://*.supabase.co https://api.openai.com https://api.groq.com https://www.google-analytics.com; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self';"
+        },
+        {
+          "key": "Strict-Transport-Security",
+          "value": "max-age=31536000; includeSubDomains; preload"
+        }
+      ]
+    },
+    {
+      "source": "/api/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-cache, no-store, must-revalidate"
+        },
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "https://doktor-na-dohled.vercel.app"
+        },
+        {
+          "key": "Access-Control-Allow-Methods",
+          "value": "GET, POST, PUT, DELETE, OPTIONS"
+        },
+        {
+          "key": "Access-Control-Allow-Headers",
+          "value": "Content-Type, Authorization, X-Requested-With"
+        },
+        {
+          "key": "X-RateLimit-Limit",
+          "value": "100"
+        },
+        {
+          "key": "X-RateLimit-Window",
+          "value": "60"
+        }
+      ]
+    },
+    {
+      "source": "/api/chat/(.*)",
+      "headers": [
+        {
+          "key": "X-RateLimit-Limit",
+          "value": "20"
+        },
+        {
+          "key": "X-RateLimit-Window",
+          "value": "60"
+        }
+      ]
+    },
+    {
+      "source": "/(.*\\.(js|css|ico|png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot))$",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/index",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/home",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/login",
+      "destination": "/auth/login",
+      "permanent": true
+    },
+    {
+      "source": "/register",
+      "destination": "/auth/register",
+      "permanent": true
+    },
+    {
+      "source": "/search",
+      "destination": "/vyhledavani",
+      "permanent": true
+    },
+    {
+      "source": "/booking",
+      "destination": "/rezervace",
+      "permanent": true
+    },
+    {
+      "source": "/doctors",
+      "destination": "/vyhledavani",
+      "permanent": true
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/sitemap.xml",
+      "destination": "/api/sitemap"
+    },
+    {
+      "source": "/robots.txt",
+      "destination": "/api/robots"
+    },
+    {
+      "source": "/health-check",
+      "destination": "/api/health"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/"
+    }
+  ],
+  "crons": [
+    {
+      "path": "/api/cron/cleanup",
+      "schedule": "0 2 * * *"
+    },
+    {
+      "path": "/api/cron/email-reminders",
+      "schedule": "0 9 * * *"
+    },
+    {
+      "path": "/api/cron/analytics",
+      "schedule": "0 1 * * 0"
+    }
+  ],
+  "github": {
+    "enabled": true,
+    "autoAlias": true
+  },
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "framework": "nextjs",
+  "installCommand": "npm ci",
+  "buildCommand": "npm run build",
+  "devCommand": "npm run dev",
+  "outputDirectory": ".next",
+  "public": true,
+  "ignoreCommand": "exit 0",
+  "typescript": {
+    "ignoreBuildErrors": false
+  },
+  "functions": {
+    "maxDuration": 10
+  }
+}
